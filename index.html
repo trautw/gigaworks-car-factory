@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GIGAWORKS</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23006fe6'/%3E%3Ctext x='16' y='23' font-family='Arial' font-weight='bold' font-size='20' text-anchor='middle' fill='white'%3EG%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- loading -->
+  <div id="loading" class="screen">
+    <div class="brand"><span class="logo-g">G</span>GIGAWORKS</div>
+    <div class="load-sub">Precision Automotive Manufacturing</div>
+    <div class="load-bar"><div id="load-fill"></div></div>
+    <div id="load-text">Initialising…</div>
+  </div>
+
+  <!-- title -->
+  <div id="title" class="screen hidden">
+    <div class="title-inner">
+      <div class="brand big"><span class="logo-g">G</span>GIGAWORKS</div>
+      <div class="tagline">ORDER IT. &nbsp;WATCH IT BUILT. &nbsp;DRIVE IT.</div>
+      <button id="start-btn" class="cta">ENTER THE FACTORY</button>
+      <div class="title-controls">
+        <div><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> walk / drive</div>
+        <div><kbd>Shift</kbd> run</div>
+        <div><kbd>Mouse</kbd> look</div>
+        <div><kbd>E</kbd> interact</div>
+        <div><kbd>Space</kbd> handbrake</div>
+        <div><kbd>T</kbd> hold: fast-forward line</div>
+      </div>
+    </div>
+    <div class="title-foot">Every model, texture, sound and note in this experience is generated procedurally.</div>
+  </div>
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <div id="order-panel" class="panel hidden">
+      <div class="op-head"><span id="op-swatch"></span><div><div class="op-label">YOUR ORDER</div><div id="op-number">GW-00000</div></div></div>
+      <div id="op-config"></div>
+      <div id="op-station">Waiting at loading bay</div>
+      <div class="op-bar"><div id="op-fill"></div></div>
+      <ol id="op-steps"></ol>
+      <div id="op-eta"></div>
+    </div>
+    <div id="objective" class="panel"></div>
+    <div id="minimap-wrap" class="panel"><canvas id="minimap" width="220" height="220"></canvas><div id="mm-label">FACTORY</div></div>
+    <div id="drive-panel" class="hidden">
+      <div id="speedo"><span id="speed">0</span><small>km/h</small></div>
+      <div id="gear">D</div>
+      <div id="laptimer"><div class="lt-label">LAP</div><div id="lap-time">--:--.---</div><div id="lap-status">Cross the start line to begin</div></div>
+    </div>
+    <div id="controls-hint"></div>
+    <div id="prompt" class="hidden"></div>
+    <div id="toast" class="hidden"></div>
+    <div id="ff-badge" class="hidden">▶▶ FAST-FORWARD</div>
+    <div id="bubbles"></div>
+    <div id="crosshair-hint" class="hidden">Click to look around</div>
+  </div>
+
+  <!-- configurator -->
+  <div id="config" class="overlay hidden">
+    <div class="cfg-card">
+      <div class="cfg-head"><span class="logo-g sm">G</span>GIGAWORKS CONFIGURATOR</div>
+      <div class="cfg-model">GT COUPE <span>Built to order in under 4 minutes</span></div>
+      <div class="cfg-section">BODY COLOUR <span id="cfg-color-name"></span></div>
+      <div id="cfg-colors" class="cfg-row"></div>
+      <div class="cfg-section">WHEELS</div>
+      <div id="cfg-wheels" class="cfg-row cards"></div>
+      <div class="cfg-section">EXTRA</div>
+      <div id="cfg-extras" class="cfg-row cards"></div>
+      <div class="cfg-actions">
+        <button id="cfg-cancel" class="ghost">Cancel</button>
+        <button id="cfg-order" class="cta">PLACE ORDER</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- info panel -->
+  <div id="info" class="overlay hidden">
+    <div class="info-card">
+      <div id="info-step"></div>
+      <h2 id="info-title"></h2>
+      <div id="info-body"></div>
+      <div id="info-facts"></div>
+      <button id="info-close" class="ghost">Close <kbd>E</kbd></button>
+    </div>
+  </div>
+
+  <!-- finish -->
+  <div id="finish" class="overlay hidden">
+    <div class="finish-card">
+      <div class="brand"><span class="logo-g">G</span>GIGAWORKS</div>
+      <div class="fin-title">LAP COMPLETE</div>
+      <div class="fin-grid">
+        <div><label>ORDER</label><b id="fin-order"></b></div>
+        <div><label>COLOUR</label><b id="fin-color"></b></div>
+        <div><label>WHEELS · EXTRA</label><b id="fin-spec"></b></div>
+        <div><label>BUILD TIME</label><b id="fin-build"></b></div>
+        <div><label>LAP TIME</label><b id="fin-lap"></b></div>
+        <div><label>TOP SPEED</label><b id="fin-top"></b></div>
+      </div>
+      <div id="fin-photo-wrap" class="hidden"><img id="fin-photo" alt="Photo of your car" /></div>
+      <div class="fin-actions">
+        <button id="fin-photo-btn" class="cta">📷 TAKE PHOTO</button>
+        <button id="fin-drive" class="ghost">Keep driving</button>
+        <button id="fin-restart" class="ghost">Build another</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="fade"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

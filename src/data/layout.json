@@ -1,0 +1,26 @@
+{
+  "_note": "Shared layout in three.js coordinates (meters, Y up, Z south). Blender scripts read this too (blender y = -z).",
+  "hall": { "x0": -60, "x1": 60, "z0": -22, "z1": 20, "height": 14 },
+  "lineZ": -4,
+  "slots": [
+    { "id": "load",    "name": "Loading",          "x": -50 },
+    { "id": "stamp",   "name": "Stamping",         "x": -36 },
+    { "id": "body",    "name": "Body Shop",        "x": -20 },
+    { "id": "paint",   "name": "Paint Shop",       "x": -3 },
+    { "id": "engine",  "name": "Engine Marriage",  "x": 13 },
+    { "id": "final",   "name": "Final Assembly",   "x": 28 },
+    { "id": "qc",      "name": "Quality Check",    "x": 42 },
+    { "id": "exit",    "name": "Delivery",         "x": 52 }
+  ],
+  "lobby": { "x0": -58, "x1": -34, "z0": 10, "z1": 20, "gateX0": -44, "gateX1": -40 },
+  "entrance": { "x": -46, "width": 4.4, "height": 3.6 },
+  "kiosk": { "x": -46, "z": 13.5 },
+  "fenceZ": 0.6,
+  "fenceX0": -54,
+  "fenceX1": 47,
+  "rollup": { "z": -4, "width": 8, "height": 6.5 },
+  "delivery": { "x": 53, "z": 4.5 },
+  "paintBooth": { "x0": -10, "x1": 4 },
+  "playerStart": { "x": -46, "z": 39 },
+  "parking": { "x0": -62, "x1": -8, "z0": 25, "z1": 56 }
+}

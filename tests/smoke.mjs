@@ -1,0 +1,24 @@
+// Quick smoke test: loads the game, reports console errors, takes a few screenshots.
+import { chromium } from 'playwright';
+const URL = process.env.URL || 'http://localhost:5173/';
+const OUT = process.env.OUT || 'tests/screens';
+import fs from 'fs';
+fs.mkdirSync(OUT, { recursive: true });
+const browser = await chromium.launch({ headless: true, args: ['--use-angle=metal', '--enable-gpu', '--ignore-gpu-blocklist'] });
+const page = await browser.newPage({ viewport: { width: 1600, height: 900 } });
+const errors = [];
+page.on('console', (m) => { if (m.type() === 'error' || m.type() === 'warning') errors.push(`[${m.type()}] ${m.text()}`); });
+page.on('pageerror', (e) => errors.push('[pageerror] ' + e.message + '\n' + e.stack));
+page.on('requestfailed', (r) => errors.push('[requestfailed] ' + r.url()));
+await page.goto(URL);
+await page.waitForFunction(() => window.__game && window.__game.mode === 'title', null, { timeout: 60000 });
+await page.waitForTimeout(1500);
+await page.screenshot({ path: `${OUT}/smoke_title.png` });
+await page.evaluate(() => window.__game.start());
+await page.waitForTimeout(2500);
+await page.screenshot({ path: `${OUT}/smoke_start.png` });
+const fps = await page.evaluate(() => new Promise((r) => { let n = 0; const t0 = performance.now(); const f = () => { n++; if (performance.now() - t0 < 2000) requestAnimationFrame(f); else r(n / 2); }; requestAnimationFrame(f); }));
+console.log('fps', fps);
+console.log('state', JSON.stringify(await page.evaluate(() => window.__game.state)));
+console.log(errors.length ? errors.join('\n') : 'NO ERRORS');
+await browser.close();
